@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "local-mcp-simple-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/server.js"],
+      "env": {
+        "SIMPLE_MCP_SOURCE_ROOT": "${workspaceFolder}/examples/source"
+      }
+    }
+  }
+}

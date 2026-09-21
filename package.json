@@ -1,0 +1,28 @@
+{
+  "name": "local-mcp-simple-server",
+  "version": "1.0.0",
+  "description": "A minimal local MCP server: one tool, one selected file, bounded source text returned to the caller.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test --test-timeout=15000 test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "author": "Jeff Caradona",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffcaradona/local-mcp-simple-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeffcaradona/local-mcp-simple-server/issues"
+  },
+  "homepage": "https://github.com/jeffcaradona/local-mcp-simple-server#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.6.5"
+  }
+}
