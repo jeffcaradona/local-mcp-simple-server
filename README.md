@@ -107,10 +107,20 @@ stdin (Ctrl+C, or closing the terminal) to stop it.
    explanation without ever going through this server, which would
    silently defeat the point of the smoke test.
 
-This manual smoke test has not been run against live VS Code/Copilot from
-this environment (no VS Code instance available here). Treat it as
-untested until you've actually walked through it once yourself; do not
-take this README's word for a live pass.
+**Verified 2026-09-21** against live VS Code Copilot Chat (Agent mode,
+Windows) reading this repo's own `CustomerService.vb` fixture. The MCP
+output log showed the server start under VS Code's MCP client
+(`Discovered 1 tools`), and the chat transcript's tool-call record showed
+`tool: "mcp_local-mcp-sim_read_source_file"` with
+`args: {"path":"CustomerService.vb"}` — the `mcp_`-prefixed tool name
+confirms the call went through this server rather than a built-in
+workspace file read. The raw response was
+`{"path":"CustomerService.vb","text":"..."}`, the complete file text
+untouched (CRLF preserved), and Copilot's explanation of the validation
+logic (name non-blank; email needs exactly one interior `@`; phone reduces
+to digit characters via `Char.IsDigit` and requires exactly 10, correctly
+noting this includes Unicode digits, not just ASCII) matched the actual
+code.
 
 ## What the SDK handles vs. what this code handles
 
@@ -233,9 +243,6 @@ Covered:
 
 ## Known acceptance gaps
 
-- The live VS Code/Copilot smoke test described above has not actually
-  been performed from this environment (no VS Code available here). Run
-  it yourself before relying on this as end-to-end proof.
 - Symlink/junction-escape rejection is exercised on Linux in this
   environment; Windows junction behavior relies on Node's `fs.realpath`
   resolving junctions the same way it resolves symlinks, which is
